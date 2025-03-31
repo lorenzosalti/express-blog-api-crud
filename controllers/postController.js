@@ -78,8 +78,25 @@ function update(req, res) {
 
 // modify
 function modify(req, res) {
-  const postId = req.params.id;
-  res.send('Modifica parziale del post ' + postId);
+
+  const postId = parseInt(req.params.id);
+  const modifyPost = posts.find(posts => posts.id === postId);
+  const { title, content, image, tags } = req.body;
+
+  if (!modifyPost) {
+    return res.status(404).json({
+      status: 404,
+      error: 'Not found',
+      message: 'Post non trovato'
+    });
+  };
+
+  if (title) modifyPost.title = title;
+  if (content) modifyPost.content = content;
+  if (image) modifyPost.image = image;
+  if (tags) modifyPost.tags = tags;
+
+  res.json(modifyPost);
 };
 
 
@@ -103,7 +120,6 @@ function destroy(req, res) {
   console.log(posts);
 
   res.status(204).json(posts);
-
 };
 
 
