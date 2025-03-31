@@ -31,14 +31,21 @@ function show(req, res) {
 // store
 function store(req, res) {
 
-  const addedPost = req.body;
+  const id = posts[posts.length - 1].id + 1;
+  const { title, content, image, tags } = req.body;
+  const newPost = {
+    id,
+    title,
+    content,
+    image,
+    tags
+  };
 
-  console.log(addedPost);
+  console.log(newPost);
 
+  posts.push(newPost);
 
-
-  // const postId = req.params.id;
-  res.send('Creazione di un nuovo post');
+  res.status(201).json(newPost);
 };
 
 
