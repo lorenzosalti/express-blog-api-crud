@@ -119,7 +119,7 @@ function destroy(req, res) {
 
   console.log(posts);
 
-  res.status(204).json(posts);
+  res.sendStatus(204);
 };
 
 
