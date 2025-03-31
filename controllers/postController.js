@@ -30,7 +30,14 @@ function show(req, res) {
 
 // store
 function store(req, res) {
-  const postId = req.params.id;
+
+  const addedPost = req.body;
+
+  console.log(addedPost);
+
+
+
+  // const postId = req.params.id;
   res.send('Creazione di un nuovo post');
 };
 
