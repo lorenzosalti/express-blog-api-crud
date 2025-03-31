@@ -33,8 +33,15 @@ function modify(req, res) {
 
 // destroy
 function destroy(req, res) {
-  const postId = req.params.id;
-  res.send('Eliminazione del post ' + postId);
+  const postId = parseInt(req.params.id);
+  const requiredPost = posts.find(posts => posts.id === postId);
+
+  posts.splice(posts.indexOf(requiredPost), 1);
+
+  console.log(posts);
+
+  res.status(204).json(posts);
+
 };
 
 module.exports = { index, show, store, update, modify, destroy };
