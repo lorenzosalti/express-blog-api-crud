@@ -8,8 +8,9 @@ function index(req, res) {
 
 // show
 function show(req, res) {
-  const postId = req.params.id;
-  res.send('Dettagli del post ' + postId);
+  const postId = parseInt(req.params.id);
+  const requiredPost = posts.find(posts => posts.id === postId);
+  res.json(requiredPost);
 };
 
 // store
