@@ -4,6 +4,20 @@ const posts = require('../data/posts.js');
 
 // index
 function index(req, res) {
+
+  const tags = req.query.tags;
+
+  console.log(tags);
+
+  if (tags) {
+
+    const filteredPosts = posts.filter(post => post.tags.length && post.tags.includes(tags));
+
+    res.json(filteredPosts);
+
+    return;
+  }
+
   res.json(posts);
 };
 
