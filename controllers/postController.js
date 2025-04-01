@@ -7,11 +7,17 @@ function index(req, res) {
 
   const tags = req.query.tags;
 
-  console.log(tags);
-
   if (tags) {
 
     const filteredPosts = posts.filter(post => post.tags.length && post.tags.includes(tags));
+
+    if (!filteredPosts.length) {
+      return res.status(404).json({
+        status: 404,
+        error: 'Not found',
+        message: 'Post non trovato'
+      });
+    };
 
     res.json(filteredPosts);
 
